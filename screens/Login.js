@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, View, Text, Alert, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { corPrimaria } from '../config/styles';
+import { corPrimaria, corButtonChurrascar } from '../config/styles';
 
 export default class App extends React.Component {
 
@@ -19,6 +19,12 @@ export default class App extends React.Component {
            <View style={styles.container}>
                 
                 <View>
+                <View style={styles.countainerImage}>
+                    <Image
+                        style={styles.imagemLogin}
+                        source={require('../imagens/simboloPorcao.png')}
+                    />
+                </View>
                     <TextInput
                         style={styles.input}
                         placeholder="Digite seu e-mail"
@@ -33,6 +39,27 @@ export default class App extends React.Component {
                         onChangeText={password => this.setState({ password })}
                     />
                 </View>
+                <View style={styles.containerButtons}>
+                    <TouchableOpacity
+                        style={styles.loginButtons}
+                        onPress={() => Alert.alert('Entrar')}
+                    >
+                        <Text style={styles.loginButtonText}>ENTRAR</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.loginButtons}
+                        onPress={() => Alert.alert('Registrar')}
+                    >
+                        <Text style={styles.loginButtonText}> REGISTRE-SE</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => Alert.alert('Esqueci a senha')}
+
+                    >
+                        <Text style={styles.textSenha}>Esqueceu sua senha?</Text>
+                    </TouchableOpacity>
+                </View>
+
           </View>
         );
     }
@@ -68,23 +95,21 @@ const styles = StyleSheet.create({
         height: 45,
         borderRadius: 40,
         alignItems: 'center',
-        backgroundColor: '#cccccc',
+        backgroundColor: corButtonChurrascar,
         justifyContent: 'center',
         marginBottom: 20
     },
     loginButtonText: {
-        color: 'black'
+        color: 'white'
     },
     imagemLogin: {
-        borderWidth: 1,
         borderColor: 'black',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 150,
-        height: 150,
-        backgroundColor: '#fff',
+        width: 200,
+        height: 200,
+        backgroundColor: corPrimaria,
         borderRadius: 75,
-        borderWidth: 2,
     },
     textSenha: {
         color: 'blue',
