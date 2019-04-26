@@ -5,35 +5,40 @@ import Login from "../screens/Login";
 import MeuChurrasco from "../screens/MeuChurrasco";
 import Perfil from "../screens/Perfil";
 import { corSecundaria } from "./styles";
+import CalculadoraCerveja from "../screens/CalculadoraCerveja";
+import CalculadoraChurrasco from "../screens/CalculadoraChurrasco";
+import Calculadora from "../screens/Calculadora";
+
 
 const HomeTab = createBottomTabNavigator(
     {
-        Churrasco: {
+        MeuChurrasco: {
             screen: MeuChurrasco,
             navigationOptions: {
-                tabBarIcon: ({ tintColor }) => (
-                    <Icon
-                        color={tintColor}
-                    />
-                )
+
+
+            }
+        },
+        Calculadora: {
+            screen: Calculadora,
+            navigationOptions: {
+
+
             }
         },
         Perfil: {
             screen: Perfil,
             navigationOptions: {
-                tabBarIcon: ({ tintColor }) => (
-                    <Icon                        
-                        color={tintColor}
-                    />)
+
             }
         }
 
     },
     {
         tabBarOptions: {
-            activeTintColor: corSecundaria,
+            activeTintColor: 'black',
             tintColor: 'white',
-
+            tabStyle: { backgroundColor: corSecundaria },
             labelStyle: {
                 fontSize: 11,
             }
@@ -88,6 +93,15 @@ const HomeRoot = createStackNavigator({
         navigationOptions: () => ({
             header: null
         })
+    },Calculadora: {
+        screen: Calculadora
+    },
+
+    CalculadoraCerveja: {
+        screen: CalculadoraCerveja
+    },
+    CalculadoraChurrasco: {
+        screen: CalculadoraChurrasco
     },
     /*detalhesTurma: {
         screen: detalhesTurmaTab,
@@ -138,22 +152,22 @@ const stackLoginRegistro = createStackNavigator({
             header: null
         })
     },
-   /* Registro: {
-        screen: Registro,
-        navigationOptions: ({ navigation }) => ({
-            header: null
-        })
-
-    }*/
+    /* Registro: {
+         screen: Registro,
+         navigationOptions: ({ navigation }) => ({
+             header: null
+         })
+ 
+     }*/
 });
 
 export default createSwitchNavigator({
-   Login: {
+    Login: {
         screen: stackLoginRegistro
     },
     Home: {
         screen: HomeRoot
-    },
+    }
 },
     {
         initialRouteName: 'Login'

@@ -19,7 +19,7 @@ export default class App extends React.Component {
            <View style={styles.container}>
                 
                 <View>
-                <View style={styles.countainerImage}>
+                <View style={styles.containerImage}>
                     <Image
                         style={styles.imagemLogin}
                         source={require('../imagens/simboloPorcao.png')}
@@ -42,7 +42,7 @@ export default class App extends React.Component {
                 <View style={styles.containerButtons}>
                     <TouchableOpacity
                         style={styles.loginButtons}
-                        onPress={() => Alert.alert('Entrar')}
+                        onPress={() => this.props.navigation.navigate('Home')}
                     >
                         <Text style={styles.loginButtonText}>ENTRAR</Text>
                     </TouchableOpacity>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor: corPrimaria,
         paddingHorizontal: 20
     },
-    countainerImage: {
+    containerImage: {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 30
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         backgroundColor: corPrimaria,
-        borderRadius: 75,
+        borderRadius: 75    ,
     },
     textSenha: {
         color: 'blue',

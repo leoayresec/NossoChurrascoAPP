@@ -4,11 +4,11 @@ import { View, Text, StyleSheet } from 'react-native';
 import { corPrimaria, corButtonChurrascar } from '../config/styles';
 
 // create a component
-class MeuChurrasco extends Component {
+class CalculadoraChurrasco extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Meu Churrasco</Text>
+                <Text>CalculadoraChurrasco</Text>
             </View>
         );
     }
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default MeuChurrasco;
+export default CalculadoraChurrasco;
