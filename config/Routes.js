@@ -1,5 +1,5 @@
 import React from "react";
-import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator, createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import Login from "../screens/Login";
 import MeuChurrasco from "../screens/MeuChurrasco";
@@ -7,8 +7,27 @@ import Perfil from "../screens/Perfil";
 import { corSecundaria } from "./styles";
 import CalculadoraCerveja from "../screens/CalculadoraCerveja";
 import CalculadoraChurrasco from "../screens/CalculadoraChurrasco";
-import Calculadora from "../screens/Calculadora";
 
+const CalculadoraTab = createMaterialTopTabNavigator({
+
+    Churrasco: {
+        screen: CalculadoraChurrasco
+    },
+
+    Cerveja: {
+        screen: CalculadoraCerveja
+    },
+
+}, {
+        tabBarOptions: {
+            activeTintColor: 'black',
+            tintColor: 'white',
+            tabStyle: { backgroundColor: corSecundaria },
+            labelStyle: {
+                fontSize: 11,
+            }
+        }, swipeEnabled: true
+    })
 
 const HomeTab = createBottomTabNavigator(
     {
@@ -20,7 +39,7 @@ const HomeTab = createBottomTabNavigator(
             }
         },
         Calculadora: {
-            screen: Calculadora,
+            screen: CalculadoraTab,
             navigationOptions: {
 
 
@@ -93,16 +112,8 @@ const HomeRoot = createStackNavigator({
         navigationOptions: () => ({
             header: null
         })
-    },Calculadora: {
-        screen: Calculadora
     },
 
-    CalculadoraCerveja: {
-        screen: CalculadoraCerveja
-    },
-    CalculadoraChurrasco: {
-        screen: CalculadoraChurrasco
-    },
     /*detalhesTurma: {
         screen: detalhesTurmaTab,
         navigationOptions: ({ navigation }) => ({
