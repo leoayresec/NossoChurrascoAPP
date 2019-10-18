@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator, createSwitchNavigator, createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import Login from "../screens/Login";
+import Registro from "../screens/Registro";
 import MeuChurrasco from "../screens/MeuChurrasco";
 import Perfil from "../screens/Perfil";
 import { corSecundaria } from "./styles";
@@ -19,15 +20,15 @@ const CalculadoraTab = createMaterialTopTabNavigator({
     },
 
 }, {
-        tabBarOptions: {
-            activeTintColor: 'black',
-            tintColor: 'white',
-            tabStyle: { backgroundColor: corSecundaria },
-            labelStyle: {
-                fontSize: 11,
-            }
-        }, swipeEnabled: true
-    })
+    tabBarOptions: {
+        activeTintColor: 'black',
+        tintColor: 'white',
+        tabStyle: { backgroundColor: corSecundaria },
+        labelStyle: {
+            fontSize: 11,
+        }
+    }, swipeEnabled: true
+})
 
 const HomeTab = createBottomTabNavigator(
     {
@@ -163,13 +164,13 @@ const stackLoginRegistro = createStackNavigator({
             header: null
         })
     },
-    /* Registro: {
-         screen: Registro,
-         navigationOptions: ({ navigation }) => ({
-             header: null
-         })
- 
-     }*/
+    Registro: {
+        screen: Registro,
+        navigationOptions: ({ navigation }) => ({
+            header: null
+        })
+
+    }
 });
 
 export default createSwitchNavigator({

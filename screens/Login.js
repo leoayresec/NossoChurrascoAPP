@@ -1,6 +1,8 @@
 import React from 'react';
 import { TextInput, View, Text, Alert, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { corPrimaria, corButtonChurrascar } from '../config/styles';
+import CryptoJS from "react-native-crypto-js";
+
 
 export default class App extends React.Component {
 
@@ -13,18 +15,29 @@ export default class App extends React.Component {
         };
 
     }
+    _onPressLogin = () => {
+
+       /* const { email, password } = this.state
+        let encryptEmail = CryptoJS.AES.encrypt(email, '60').toString();
+
+        let bytes = CryptoJS.AES.decrypt(encryptEmail, '60');
+        let originalText = bytes.toString(CryptoJS.enc.Utf8);
+        console.log("Encriptado", encryptEmail);
+        console.log("Descriptografar", originalText);
+        */this.props.navigation.navigate('Home')
+    }
 
     render() {
         return (
-           <View style={styles.container}>
-                
+            <View style={styles.container}>
+
                 <View>
-                <View style={styles.containerImage}>
-                    <Image
-                        style={styles.imagemLogin}
-                        source={require('../imagens/simboloPorcao.png')}
-                    />
-                </View>
+                    <View style={styles.containerImage}>
+                        <Image
+                            style={styles.imagemLogin}
+                            source={require('../imagens/simboloPorcao.png')}
+                        />
+                    </View>
                     <TextInput
                         style={styles.input}
                         placeholder="Digite seu e-mail"
@@ -42,13 +55,13 @@ export default class App extends React.Component {
                 <View style={styles.containerButtons}>
                     <TouchableOpacity
                         style={styles.loginButtons}
-                        onPress={() => this.props.navigation.navigate('Home')}
+                        onPress={this._onPressLogin}
                     >
                         <Text style={styles.loginButtonText}>ENTRAR</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.loginButtons}
-                        onPress={() => Alert.alert('Registrar')}
+                        onPress={() => this.props.navigation.navigate('Registro')}
                     >
                         <Text style={styles.loginButtonText}> REGISTRE-SE</Text>
                     </TouchableOpacity>
@@ -60,7 +73,7 @@ export default class App extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-          </View>
+            </View>
         );
     }
 }
@@ -109,7 +122,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         backgroundColor: corPrimaria,
-        borderRadius: 75    ,
+        borderRadius: 75,
     },
     textSenha: {
         color: 'blue',
