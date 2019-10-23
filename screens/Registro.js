@@ -8,7 +8,7 @@ import {
     Alert
 } from 'react-native';
 import axios from 'axios';
-import CryptoJS from "react-native-crypto-js";
+import { encryptMessage } from '../config/crypto'
 
 export default class Registro extends Component {
     constructor(props) {
@@ -21,14 +21,14 @@ export default class Registro extends Component {
     }
     registroUsuario() {
         const { nome, email, password } = this.state;
-        const api = 'https://877fa923.ngrok.io/api/users'
-        let encryptNome = CryptoJS.AES.encrypt(nome, '102031').toString();
-        let encryptEmail = CryptoJS.AES.encrypt(email, '102031').toString();
-        let encryptPassword = CryptoJS.AES.encrypt(password, '102031').toString();
+        let encryptNome = encryptMessage(nome);
+        let encryptEmail = encryptMessage(email);
+        console.log(encryptEmail)
+        let encryptPassword = encryptMessage(password);
 
 
         console.log('AIOS')
-        axios.post('https://877fa923.ngrok.io/api/users', {
+        axios.post('http://30b265e7.ngrok.io/api/users', {
             user: {
                 username: encryptNome,
                 email: encryptEmail,

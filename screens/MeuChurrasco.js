@@ -2,8 +2,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { corPrimaria, corButtonChurrascar } from '../config/styles';
-import CryptoJS from "react-native-crypto-js";
+import CryptoJS from "crypto-js";
 import axios from 'axios';
+import { decryptMessage } from '../config/crypto'
+
 
 
 
@@ -17,14 +19,12 @@ class MeuChurrasco extends Component {
         }
     }
     componentDidMount() {
-        /*const { nome, email } = this.state
-        let bytesNome = CryptoJS.AES.decrypt(encryptNome, '102031');
-        let bytesEmail = CryptoJS.AES.decrypt(encryptEmail, '102031');
-        */axios.get('https://877fa923.ngrok.io/api/users')
+
+        axios.get('http://30b265e7.ngrok.io/api/users')
             .then(function (response) {
 
-                let bytesNome = CryptoJS.AES.decrypt(response.data.username, '102031');
-                let bytesEmail = CryptoJS.AES.decrypt(response.data.email, '102031');
+                let bytesNome = decryptMessage(response.data.username)
+                let bytesEmail = decryptMessage(response.data.email)
                 this.setState({ nome: bytesNome, email: bytesEmail })
             })
             .catch(function (error) {
@@ -35,7 +35,7 @@ class MeuChurrasco extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Leonardo Ayres</Text>
+                <Text>Bem Vindo, {this.state.nome}</Text>
             </View>
         );
     }

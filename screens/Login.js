@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextInput, View, Text, Alert, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { corPrimaria, corButtonChurrascar } from '../config/styles';
-import CryptoJS from "react-native-crypto-js";
+import axios from 'axios';
+import { encryptMessage, decryptMessage } from '../config/crypto'
 
 
 export default class App extends React.Component {
@@ -17,14 +18,22 @@ export default class App extends React.Component {
     }
     _onPressLogin = () => {
 
-       /* const { email, password } = this.state
-        let encryptEmail = CryptoJS.AES.encrypt(email, '60').toString();
+        const { email, password } = this.state
+        let encryptEmail = encryptMessage(email);
+        let encryptPassword = encryptMessage(password);
+        axios.post('http://30b265e7.ngrok.io/api/login', {
 
-        let bytes = CryptoJS.AES.decrypt(encryptEmail, '60');
-        let originalText = bytes.toString(CryptoJS.enc.Utf8);
-        console.log("Encriptado", encryptEmail);
-        console.log("Descriptografar", originalText);
-        */this.props.navigation.navigate('Home')
+            email: encryptEmail,
+            senha: encryptPassword
+
+        })
+            .then(function (response) {
+                console.log("Aqui", response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        //this.props.navigation.navigate('Home')
     }
 
     render() {
